@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Garde 2</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Garde 2">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#a51d1d">
+<link rel="apple-touch-icon" href="icone-180.png">
+<link rel="icon" type="image/png" href="icone-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  /* =====================================================================
+     Page d'accueil de l'appli Garde 2 (CIS Pont de Veyle).
+     Seule chose à adapter : l'adresse APPLI ci-dessous (finit par /exec).
+     ===================================================================== */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #f4f2ee; color: #1f1f1f;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+  #cadre { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: none; background: #f4f2ee; }
+  .ecran { min-height: 100%; display: none; flex-direction: column; align-items: center; text-align: center;
+    padding: calc(env(safe-area-inset-top) + 36px) 22px calc(env(safe-area-inset-bottom) + 28px); }
+  .logo { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  h1 { margin: 18px 0 6px; font-size: 28px; }
+  p { margin: 0; color: #5c5853; font-size: 16px; line-height: 1.45; }
+  .etapes { width: 100%; max-width: 420px; margin: 24px 0 0; display: flex; flex-direction: column; gap: 12px; text-align: left; }
+  .etape { background: #fff; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06); font-size: 17px; line-height: 1.35; }
+  .num { flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; background: #a51d1d; color: #fff;
+    font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .pic { display: inline-flex; vertical-align: middle; width: 26px; height: 26px; border-radius: 6px; background: #eef3fd;
+    align-items: center; justify-content: center; margin: 0 2px; }
+  .btn { margin-top: 22px; width: 100%; max-width: 420px; min-height: 54px; border-radius: 14px; border: 0; font-size: 18px;
+    font-weight: 700; background: #a51d1d; color: #fff; cursor: pointer; }
+  .btn.blanc { background: #fff; color: #1f1f1f; border: 1.5px solid #d9d5cf; font-weight: 600; font-size: 16px; margin-top: 12px; }
+  .note { margin-top: 16px; font-size: 14px; color: #7a746d; max-width: 420px; }
+  .fleche { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 6px); transform: translateX(-50%);
+    font-size: 40px; color: #a51d1d; animation: rebond 1.2s infinite; display: none; }
+  @keyframes rebond { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
+</style>
+</head>
+<body>
+
+<iframe id="cadre" title="Appli Garde 2" allow="clipboard-write"></iframe>
+
+<!-- Pas de lien personnel -->
+<div class="ecran" id="sansLien">
+  <img class="logo" src="icone-512.png" alt="Garde 2">
+  <h1>Garde 2</h1>
+  <p>Ouvre le <b>lien personnel</b> que le chef de garde t'a envoyé en message privé.<br>Il se termine par <b>?id=…</b></p>
+</div>
+
+<!-- Guide d'installation -->
+<div class="ecran" id="guide">
+  <img class="logo" src="icone-512.png" alt="Garde 2">
+  <h1>Installe l'appli Garde 2</h1>
+  <p>Une seule fois, en 3 gestes. Ensuite, tu l'ouvres comme n'importe quelle appli.</p>
+
+  <div class="etapes" id="etapesIphone">
+    <div class="etape"><span class="num">1</span><span>Touche le bouton <b>Partager</b>
+      <span class="pic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span>
+      en bas de l'écran</span></div>
+    <div class="etape"><span class="num">2</span><span>Fais défiler et choisis <b>« Sur l'écran d'accueil »</b>
+      <span class="pic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span></span></div>
+    <div class="etape"><span class="num">3</span><span>Touche <b>Ajouter</b> en haut à droite. C'est fini&nbsp;!</span></div>
+  </div>
+
+  <div class="etapes" id="etapesAndroid" style="display:none">
+    <div class="etape"><span class="num">1</span><span>Touche <b>⋮</b> en haut à droite de Chrome</span></div>
+    <div class="etape"><span class="num">2</span><span>Choisis <b>« Ajouter à l'écran d'accueil »</b> ou <b>« Installer l'appli »</b></span></div>
+    <div class="etape"><span class="num">3</span><span>Confirme. C'est fini&nbsp;!</span></div>
+  </div>
+
+  <button class="btn" id="installer" style="display:none">Installer l'appli</button>
+  <button class="btn blanc" id="continuer">Ouvrir l'appli sans l'installer</button>
+  <p class="note" id="noteIphone">Pas de « Sur l'écran d'accueil » ? Ouvre ce lien dans <b>Safari</b>&nbsp;:
+    <button class="btn blanc" id="copier" style="margin-top:8px">Copier mon lien</button></p>
+</div>
+<div class="fleche" id="fleche" aria-hidden="true">⬇</div>
+
+<script>
+  // ⚠️ Adresse de l'appli Apps Script (Déployer > Gérer les déploiements > URL) :
+  var APPLI = 'https://script.google.com/macros/s/AKfycbwpIyCy0A3Ta9x4ngabuCdxUzUdCmAObEMvOxJlVT-rvasCyHAT_JcDlLTrEcpRVU17/exec';
+
+  function lire(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function ecrire(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  var params = new URLSearchParams(location.search);
+  var id = (params.get('id') || lire('garde2-id') || '').replace(/[^A-Za-z0-9]/g, '');
+  if (id) ecrire('garde2-id', id);
+
+  var installee = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+  var iphone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  var invite = null;
+
+  function montrer(el) { document.getElementById(el).style.display = 'flex'; }
+  function ouvrirAppli() {
+    document.getElementById('guide').style.display = 'none';
+    document.getElementById('fleche').style.display = 'none';
+    var f = document.getElementById('cadre');
+    f.src = APPLI + '?id=' + encodeURIComponent(id);
+    f.style.display = 'block';
+  }
+
+  if (!id) {
+    montrer('sansLien');
+  } else if (installee || lire('garde2-sans-installer') === '1') {
+    ouvrirAppli();
+  } else {
+    montrer('guide');
+    if (!iphone) {
+      document.getElementById('etapesIphone').style.display = 'none';
+      document.getElementById('etapesAndroid').style.display = 'flex';
+      document.getElementById('noteIphone').style.display = 'none';
+    }
+  }
+
+  // Android / Chrome : bouton « Installer » natif quand il est disponible
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); invite = e;
+    document.getElementById('installer').style.display = 'block';
+  });
+  document.getElementById('installer').onclick = function () { if (invite) invite.prompt(); };
+  document.getElementById('continuer').onclick = function () { ecrire('garde2-sans-installer', '1'); ouvrirAppli(); };
+  document.getElementById('copier').onclick = function () {
+    var lien = location.origin + location.pathname + '?id=' + id;
+    if (navigator.clipboard) navigator.clipboard.writeText(lien).then(function () { alert('Lien copié : colle-le dans Safari.'); });
+    else prompt('Copie ce lien et colle-le dans Safari :', lien);
+  };
+</script>
+</body>
+</html>
