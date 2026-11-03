@@ -11,7 +11,12 @@
 <meta name="theme-color" content="#a51d1d">
 <link rel="apple-touch-icon" href="icone-180.png">
 <link rel="icon" type="image/png" href="icone-192.png">
-<link rel="manifest" href="manifest.webmanifest">
+<script>
+  // Le manifeste n'est donné qu'aux téléphones Android : sur iPhone, il ferait perdre le lien personnel (?id=…)
+  if (!/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    var m = document.createElement('link'); m.rel = 'manifest'; m.href = 'manifest.webmanifest'; document.head.appendChild(m);
+  }
+</script>
 <style>
   /* =====================================================================
      Page d'accueil de l'appli Garde 2 (CIS Pont de Veyle).
@@ -51,6 +56,13 @@
   <img class="logo" src="icone-512.png" alt="Garde 2">
   <h1>Garde 2</h1>
   <p>Ouvre le <b>lien personnel</b> que le chef de garde t'a envoyé en message privé.<br>Il se termine par <b>?id=…</b></p>
+  <div class="etapes" id="coller" style="display:none">
+    <div class="etape" style="flex-direction:column;align-items:stretch;gap:10px">
+      <span>Ou colle ton lien personnel ici, une seule fois&nbsp;:</span>
+      <input id="champLien" type="url" placeholder="https://…?id=…" style="font-size:16px;padding:12px;border-radius:10px;border:1.5px solid #d9d5cf;width:100%">
+      <button class="btn" id="validerLien" style="margin-top:0">Valider</button>
+    </div>
+  </div>
 </div>
 
 <!-- Guide d'installation -->
@@ -107,6 +119,7 @@
 
   if (!id) {
     montrer('sansLien');
+    if (installee) document.getElementById('coller').style.display = 'flex';
   } else if (installee || lire('garde2-sans-installer') === '1') {
     ouvrirAppli();
   } else {
@@ -123,6 +136,14 @@
     e.preventDefault(); invite = e;
     document.getElementById('installer').style.display = 'block';
   });
+  document.getElementById('validerLien').onclick = function () {
+    var v = document.getElementById('champLien').value || '';
+    var m = v.match(/[?&]id=([A-Za-z0-9]+)/) || v.trim().match(/^([A-Za-z0-9]{8,})$/);
+    if (!m) { alert('Ce lien ne contient pas ton code personnel (?id=…).'); return; }
+    id = m[1]; ecrire('garde2-id', id);
+    document.getElementById('sansLien').style.display = 'none';
+    ouvrirAppli();
+  };
   document.getElementById('installer').onclick = function () { if (invite) invite.prompt(); };
   document.getElementById('continuer').onclick = function () { ecrire('garde2-sans-installer', '1'); ouvrirAppli(); };
   document.getElementById('copier').onclick = function () {
